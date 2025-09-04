@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aluflex - Premium Aluminium Solutions</title>
+    <title>Aluflex - Aluminium & Glass Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <style>
@@ -155,7 +155,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(26, 58, 108, 0.85), rgba(26, 58, 108, 0.9)), url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3') no-repeat center center/cover;
+            background: linear-gradient(rgba(26, 58, 108, 0.85), rgba(26, 58, 108, 0.9)), url('/Users/bonganisiamtinta/Documents/aluflex/images/header.jpeg') no-repeat center center/cover;
             color: white;
             padding: 120px 0;
             text-align: center;
@@ -300,11 +300,13 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
+            cursor: pointer;
+            height: 300px;
         }
 
         .product-card img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
@@ -321,10 +323,119 @@
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             padding: 20px;
             color: white;
+            transition: background 0.3s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            background: linear-gradient(to top, rgba(52, 152, 219, 0.9), transparent);
         }
 
         .product-overlay h3 {
             margin-bottom: 10px;
+        }
+
+        /* Modal for Galleries */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 40px auto;
+            max-width: 1000px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.25);
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--secondary);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .gallery-description {
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Facebook Gallery Section */
@@ -580,6 +691,7 @@
 
         .footer-links {
             list-style: none;
+            padding: 0;
         }
 
         .footer-links li {
@@ -658,6 +770,11 @@
             .btn-outline {
                 margin-left: 0;
             }
+
+            .modal-content {
+                margin: 20px;
+                width: auto;
+            }
         }
 
         @media (max-width: 480px) {
@@ -677,6 +794,10 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -685,7 +806,7 @@
     <div class="top-bar">
         <div class="container top-bar-content">
             <div class="contact-info">
-                <span><i class="fas fa-phone"></i> +263 11 123 4567</span>
+                <span><i class="fas fa-phone"></i> +263 786 881 701</span>
                 <span><i class="fas fa-envelope"></i> info@aluflex.co.zw</span>
             </div>
             <div class="social-icons">
@@ -723,7 +844,7 @@
     <section class="hero">
         <div class="container hero-content">
             <h1>Premium Aluminium Solutions for Modern Living</h1>
-            <p>Innovative, durable, and stylish aluminium products for residential and commercial applications across Zimbabwe</p>
+            <p>Innovative, durable, and stylish  products for residential and commercial applications across Zimbabwe</p>
             <a href="#products" class="btn">Explore Products</a>
             <a href="#contact" class="btn btn-outline">Contact Us</a>
         </div>
@@ -739,16 +860,16 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-img">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Premium Quality">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/premium_quality.jpeg" alt="Premium Quality">
                     </div>
                     <div class="feature-content">
                         <h3>Premium Quality</h3>
-                        <p>Our aluminium products are manufactured to the highest standards, ensuring durability and longevity for all applications.</p>
+                        <p>Our products are manufactured to the highest standards, ensuring durability and longevity for all applications.</p>
                     </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-img">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Innovative Design">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/innovative_desing.jpeg" alt="Innovative Design">
                     </div>
                     <div class="feature-content">
                         <h3>Innovative Design</h3>
@@ -757,7 +878,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-img">
-                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Expert Craftsmanship">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/expert_craftmen.jpeg" alt="Expert Craftsmanship">
                     </div>
                     <div class="feature-content">
                         <h3>Expert Craftsmanship</h3>
@@ -776,37 +897,186 @@
                 <p>Solutions for every application</p>
             </div>
             <div class="products-grid">
-                <div class="product-card">
-                    <img src="images/windor_doors.jpg" alt="Windows & Doors">
+                <div class="product-card" id="windows-doors-card">
+                    <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/sliding_systems.jpg" alt="Windows & Doors">
                     <div class="product-overlay">
-                        <h3>Windows & Doors</h3>
+                        <h3>Aluminium Windows & Doors</h3>
                         <p>Energy-efficient solutions</p>
                     </div>
                 </div>
-                <div class="product-card">
-                    <img src="images/sliding_systems.jpg" alt="Sliding Systems">
+                <div class="product-card" id="sliding-systems-card">
+                    <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/dry_walling.jpeg" alt="Sliding Systems">
                     <div class="product-overlay">
-                        <h3>Sliding Systems</h3>
+                        <h3>Dry Walls & Ceilings</h3>
                         <p>Seamless indoor-outdoor living</p>
                     </div>
                 </div>
-                <div class="product-card">
-                    <img src="images/showers.jpg" alt="Shower Enclosures">
+                <div class="product-card" id="shower-enclosures-card">
+                    <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/showers.jpg" alt="Shower Enclosures">
                     <div class="product-overlay">
-                        <h3>Shower Enclosures</h3>
+                        <h3>Frameless</h3>
                         <p>Stylish bathroom solutions</p>
                     </div>
                 </div>
-                <div class="product-card">
-                    <img src="images/ballustrades.jpeg" alt="Balustrades">
+                <div class="product-card" id="balustrades-card">
+                    <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/ballustrades.jpeg" alt="Balustrades">
                     <div class="product-overlay">
-                        <h3>Balustrades</h3>
+                        <h3>Service & Maintenance</h3>
                         <p>Safety with modern aesthetics</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal for Windows & Doors Gallery -->
+    <div class="modal" id="windows-doors-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Aluminium Windows & Doors</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="gallery-description">
+                    Explore our premium collection of energy-efficient windows and doors. 
+                    Each project showcases our commitment to quality, durability, and aesthetic excellence. 
+                    From modern minimalist designs to classic traditional styles, we provide solutions that 
+                    enhance both the beauty and functionality of your space.
+                </p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/windor_doors.jpg" alt="Modern Glass Doors">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/window1.jpeg" alt="Luxury Windows">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/window_4.jpeg" alt="Sliding Glass Doors">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/door1.jpeg" alt="French Windows">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://github.com/bongz007/aluflex.github.io/blob/main/images/door2.jpeg" alt="Patio Doors">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/https://github.com/bongz007/aluflex.github.io/blob/main/images/door3.jpeg" alt="Bay Windows">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Sliding Systems Gallery -->
+    <div class="modal" id="sliding-systems-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Dry Walls & Ceilings</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="gallery-description">
+                    Discover our innovative sliding systems that create seamless transitions between indoor and outdoor spaces. 
+                    Our solutions combine sleek design with exceptional functionality, offering smooth operation and enhanced durability 
+                    for both residential and commercial applications.
+                </p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="/https://github.com/bongz007/aluflex.github.io/blob/main/images/dry_walling.jpeg" alt="Modern Sliding Doors">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/https://github.com/bongz007/aluflex.github.io/blob/main/images/dry_walling1.jpeg" alt="Glass Sliding Walls">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/https://github.com/bongz007/aluflex.github.io/blob/main/images/dry_walling3.jpeg" alt="Patio Sliding Doors">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/https://github.com/bongz007/aluflex.github.io/blob/main/images/drywalling_2.jpeg" alt="Contemporary Sliding System">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/https://github.com/bongz007/aluflex.github.io/blob/main/images/drywalling3.jpeg" alt="Large Format Sliding Doors">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/https://github.com/bongz007/aluflex.github.io/blob/main/images/drywalling.jpeg" alt="Sliding Door Installation">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Shower Enclosures Gallery -->
+    <div class="modal" id="shower-enclosures-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Frameless Projects</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="gallery-description">
+                    Browse our elegant shower enclosure solutions that combine functionality with sophisticated design. 
+                    From frameless glass enclosures to space-saving sliding doors, our products transform ordinary bathrooms 
+                    into luxurious sanctuaries with attention to detail and premium materials.
+                </p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://scontent.fhre2-2.fna.fbcdn.net/v/t39.30808-6/511163119_122234242928211675_220974923813596096_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=108&ccb=1-7&_nc_sid=714c7a&_nc_ohc=uQtsrg8rBCgQ7kNvwEizqM_&_nc_oc=AdkUV-eqR6QJxgyZ5XM-owxMoC2M8btnuboXhBMOGh9mGuxopt87M6vAh09K8MXsw7M&_nc_zt=23&_nc_ht=scontent.fhre2-2.fna&_nc_gid=BlVcV7p3yfiFFA6LRCUJ5w&oh=00_Afal8G2YTm6aheRGjEd4gAcv3OLqP6g4S1ehz05NtqSV6A&oe=68BF2BCD" alt="Frameless Shower Enclosure">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://scontent.fhre2-2.fna.fbcdn.net/v/t39.30808-6/487061927_122213897336211675_4814319463599117427_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=110&ccb=1-7&_nc_sid=714c7a&_nc_ohc=yf6dceaN-TUQ7kNvwG2laUA&_nc_oc=Adlo-QJRSpuEsCoity9HoNSU9ufx2N9dtqCiflwtJNIXscppHaGy8UQQYwPvFL6xf_I&_nc_zt=23&_nc_ht=scontent.fhre2-2.fna&_nc_gid=opzGOFoKBkCXn6nmX55lqA&oh=00_AfbNFg45TPlWuC_0nzdvWRhUTg2NLP5dEEft_1xjFC5Q0g&oe=68BF1AFC" alt="Modern Walk-in Shower">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://scontent.fhre2-2.fna.fbcdn.net/v/t39.30808-6/480989757_122206320458211675_4354793604531019447_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=106&ccb=1-7&_nc_sid=714c7a&_nc_ohc=Ntz7cNRrjbUQ7kNvwGwziRt&_nc_oc=Adn77G8Os8xp6rbEWOHYMR7AfyGYu8PtKGYAVxHtQnb7rj1y1m2eRnbHNXis5-EBd5I&_nc_zt=23&_nc_ht=scontent.fhre2-2.fna&_nc_gid=BRUHAlyYfZVp4DmwXMY4Pw&oh=00_AfZdZ8K4xUg3l5tMghAaefnnpEy8vKhmOXDMEReYEhH80w&oe=68BF0FAB" alt="Corner Shower Enclosure">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://scontent.fhre2-2.fna.fbcdn.net/v/t39.30808-6/481071038_122206320512211675_3993180331793464937_n.jpg?stp=dst-jpg_s552x414_tt6&_nc_cat=101&ccb=1-7&_nc_sid=714c7a&_nc_ohc=V6RLRTtk7yoQ7kNvwEyqgWm&_nc_oc=AdkzsCN5ww4XkcyXM_tkgTH3DU9McK_kvjivdbaUbvdb6hSUYVkVt1lyFuGKuiEKc_o&_nc_zt=23&_nc_ht=scontent.fhre2-2.fna&_nc_gid=BRUHAlyYfZVp4DmwXMY4Pw&oh=00_AfaNkR1HvUTYT-2hMrCsCd-2EzVKHNQTS7httwT6fSjcpQ&oe=68BF1A5A" alt="Luxury Shower Design">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="" alt="Sliding Shower Door">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="" alt="Bathroom Transformation">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Balustrades Gallery -->
+    <div class="modal" id="balustrades-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Service & Maintenance</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="gallery-description">
+                    Explore our collection of premium balustrades that combine safety with elegant design. 
+                    Our solutions range from sleek glass balustrades to durable aluminium railings, 
+                    providing both protection and aesthetic appeal for staircases, balconies, and terraces.
+                </p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="" alt="Glass Balustrade">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="" alt="Staircase Balustrade">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="h" alt="Balcony Railing">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="" alt="Modern Stair Railing">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="" alt="Outdoor Balustrade">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="" alt="Custom Railing Design">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Facebook Gallery/Projects Section -->
     <section class="facebook-gallery" id="gallery">
@@ -940,7 +1210,7 @@
                         </div>
                         <div>
                             <h3>Phone Number</h3>
-                            <p>+263 11 123 4567<br>+263 82 123 4567</p>
+                            <p>+263 786 881 701<br>+263 777 121 701</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -982,7 +1252,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>ALUFLEX</h3>
-                    <p>Premium aluminium solutions for residential and commercial applications across Zimbabwe since 1998.</p>
+                    <p>Premium aluminium solutions for residential and commercial applications across Zimbabwe since 2024.</p>
                     <div class="social-icons" style="margin-top: 20px;">
                         <a href="https://www.facebook.com/profile.php?id=61556350277314" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -993,11 +1263,11 @@
                 <div class="footer-col">
                     <h3>Products</h3>
                     <ul class="footer-links">
-                        <li><a href="#products">Windows & Doors</a></li>
-                        <li><a href="#products">Sliding Systems</a></li>
-                        <li><a href="#products">Shower Enclosures</a></li>
-                        <li><a href="#products">Balustrades</a></li>
-                        <li><a href="#products">Commercial Solutions</a></li>
+                        <li><a href="#products">Aluminimum Windows & Doors</a></li>
+                        <li><a href="#products">Dry Wall & Ceilings</a></li>
+                        <li><a href="#products">Frameless</a></li>
+                        <li><a href="#products">Service & Maintenance </a></li>
+                        
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1020,7 +1290,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Aluflex. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i></p>
+                <p>&copy; 2025 Aluflex. All Rights Reserved. |B.Siamtinta Designed with <i class="fas fa-heart" style="color: var(--accent);"></i></p>
             </div>
         </div>
     </footer>
@@ -1101,6 +1371,63 @@
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
+
+        // Gallery Modal Functionality for all product categories
+        const productCards = {
+            'windows-doors': {
+                card: document.getElementById('windows-doors-card'),
+                modal: document.getElementById('windows-doors-modal')
+            },
+            'sliding-systems': {
+                card: document.getElementById('sliding-systems-card'),
+                modal: document.getElementById('sliding-systems-modal')
+            },
+            'shower-enclosures': {
+                card: document.getElementById('shower-enclosures-card'),
+                modal: document.getElementById('shower-enclosures-modal')
+            },
+            'balustrades': {
+                card: document.getElementById('balustrades-card'),
+                modal: document.getElementById('balustrades-modal')
+            }
+        };
+
+        // Add event listeners to all product cards
+        Object.values(productCards).forEach(product => {
+            product.card.addEventListener('click', () => {
+                product.modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            });
+        });
+
+        // Close modal when close button is clicked
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modal = btn.closest('.modal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+        });
+
+        // Close modal when clicking outside the modal content
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
     </script>
 </body>
 </html>
